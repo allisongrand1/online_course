@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'hotel.g.dart';
@@ -45,9 +47,13 @@ class HotelUuid {
 @JsonSerializable()
 class HotelAddress {
   final String country;
+
+  @JsonKey(defaultValue: "-")
   final String street;
+
+  @JsonKey(defaultValue: "-")
   final String city;
-  final String zip_code;
+  final int zip_code;
   final HotelAddressCoords coords;
 
   HotelAddress({

@@ -46,7 +46,7 @@ HotelAddress _$HotelAddressFromJson(Map<String, dynamic> json) => HotelAddress(
       country: json['country'] as String,
       street: json['street'] as String,
       city: json['city'] as String,
-      zip_code: json['zip_code'] as String,
+      zip_code: json['zip_code'] as int,
       coords:
           HotelAddressCoords.fromJson(json['coords'] as Map<String, dynamic>),
     );

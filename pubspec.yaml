@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   fluro: ^2.0.3
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
@@ -64,20 +65,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/b&b_la_fontaine_1.jpg
-    - assets/images/upon_lisbon_prime_residences_2.jpg
-    - assets/images/disney_dreams_1.jpg
-    - assets/images/flora_chiado_apartments_1.jpg
-    - assets/images/golden_ratio_1.jpg
-    - assets/images/grand_orlando_resort_1.jpg
-    - assets/images/holiday_inn_&_suites_orlando_1.jpg
-    - assets/images/motel_one_brussels_1.jpg
-    - assets/images/new_rome_house_1.jpg
-    - assets/images/oscar_hotel_1.jpg
-    - assets/images/p_17_hotel_1.jpg
-    - assets/images/parkway_international_1.jpg
-    - assets/images/stradom_apartments_1.jpg
-    - assets/images/upon_lisbon_prime_residences_1.jpg
+    - assets/images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
