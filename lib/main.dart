@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'fluro_router.dart';
+
+import 'pages/login_view.dart';
 
 void main() {
-  runApp(MyApp());
-  RouteFluro.setupRouter();
+  runApp(const MyApp());
 }
 
-
-// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           colorSchemeSeed: const Color(0xff3152b7), useMaterial3: true),
       initialRoute: '/',
-      onGenerateRoute: RouteFluro.router.generator,
+      routes: {
+        '/' : (context) => const LoginView(),
+      },
     );
   }
 }
-
