@@ -11,7 +11,7 @@ void main() {
   final signUpButton = find.text('Регистрация');
   final okayButton = find.byValueKey('buttonOkay');
 
-  group('Login form tests', () {
+  group('Тесты формы входа', () {
     late final FlutterDriver? driver;
 
     setUpAll(() async {
@@ -24,26 +24,51 @@ void main() {
       }
     });
 
-    test('Проверка валидации поля email при вводе', () async {
+    test('Проверка валидации пустых полей при нажатии на submit', () async {
       await driver!.tap(emailField);
+      await driver?.enterText('');
       await driver?.waitFor(find.text(''));
+
+      await driver!.tap(phoneField);
+      await driver?.enterText('');
+      await driver?.waitFor(find.text(''));
+
+      await driver!.tap(submitButton);
+      expect(await driver!.getText(find.text("Введите email")), "Введите email");
+      expect(await driver!.getText(find.text("Введите телефон")), "Введите телефон");
+    });
+
+     test('Проверка валидации полей при корректном заполнении', () async {
+      await driver!.tap(emailField);
       await driver?.enterText('test@test.com');
       await driver?.waitFor(find.text('test@test.com'));
-    });
-    test('Проверка валидации поля phone при вводе', () async {
+
       await driver!.tap(phoneField);
-      await driver?.waitFor(find.text(''));
       await driver?.enterText('8800500600');
       await driver?.waitFor(find.text('8800500600'));
-    });
-    test('Проверка кнопки submit phone при нажатии', () async {
+
       await driver!.tap(submitButton);
       await driver?.waitFor(find.text('Добро пожаловать'));
       await driver!.tap(okayButton);
+      
     });
-  });
 
-  group('Rigister form tests', () {
+    test('Проверка валидации полей при некорректном заполнении', () async {
+      await driver!.tap(emailField);
+      await driver?.enterText('test');
+      await driver?.waitFor(find.text('test'));
+
+      await driver!.tap(phoneField);
+      await driver?.enterText('8800500600');
+      await driver?.waitFor(find.text('8800500600'));
+
+      await driver!.tap(submitButton);
+      expect(await driver!.getText(find.text("Поле email заполнено не корректно")),
+          "Поле email заполнено не корректно");
+    }); 
+  });
+ 
+  group('Тесты формы регистрации', () {
     late final FlutterDriver? driver;
 
     setUpAll(() async {
@@ -55,38 +80,75 @@ void main() {
         driver!.close();
       }
     });
-    test('Переход на страницу регистрации при нажатии на кнопку "Регистрация"',
+     test('Переход на страницу регистрации при нажатии на кнопку "Регистрация"',
         () async {
       await driver!.tap(signUpButton);
     });
-    test('Проверка валидации поля firstName при вводе', () async {
+     test('Проверка валидации пустых полей при нажатии на submit', () async {
       await driver!.tap(firstNameField);
+      await driver?.enterText('');
       await driver?.waitFor(find.text(''));
+
+      await driver!.tap(lastNameField);
+      await driver?.enterText('');
+      await driver?.waitFor(find.text(''));
+
+      await driver!.tap(emailField);
+      await driver?.enterText('');
+      await driver?.waitFor(find.text(''));
+
+      await driver!.tap(phoneField);
+      await driver?.enterText('');
+      await driver?.waitFor(find.text(''));
+
+      await driver!.tap(submitButton);
+      expect(await driver!.getText(find.text("Введите имя")), "Введите имя");
+      expect(await driver!.getText(find.text("Введите фамилию")), "Введите фамилию");
+      expect(await driver!.getText(find.text("Введите email")), "Введите email");
+      expect(await driver!.getText(find.text("Заполните поле телефон")), "Заполните поле телефон");
+    });
+
+    test('Проверка валидации полей при некорректном заполнении', () async {
+      await driver!.tap(firstNameField);
       await driver?.enterText('Ivan');
       await driver?.waitFor(find.text('Ivan'));
-    });
-    test('Проверка валидации поля lastName при вводе', () async {
+
       await driver!.tap(lastNameField);
-      await driver?.waitFor(find.text(''));
       await driver?.enterText('Ivanov');
       await driver?.waitFor(find.text('Ivanov'));
-    });
-    test('Проверка валидации поля email при вводе', () async {
+
       await driver!.tap(emailField);
-      await driver?.waitFor(find.text(''));
-      await driver?.enterText('test@test.com');
-      await driver?.waitFor(find.text('test@test.com'));
-    });
-    test('Проверка валидации поля phone при вводе', () async {
+      await driver?.enterText('test');
+      await driver?.waitFor(find.text('test'));
+
       await driver!.tap(phoneField);
-      await driver?.waitFor(find.text(''));
       await driver?.enterText('8800500600');
       await driver?.waitFor(find.text('8800500600'));
+      await driver!.tap(submitButton);
+      expect(await driver!.getText(find.text("Поле email заполнено не корректно")),
+          "Поле email заполнено не корректно");
     });
-    test('Проверка кнопки submit phone при нажатии', () async {
+
+    test('Проверка валидации полей при корректном заполнении', () async {
+      await driver!.tap(firstNameField);
+      await driver?.enterText('Ivan');
+      await driver?.waitFor(find.text('Ivan'));
+
+      await driver!.tap(lastNameField);
+      await driver?.enterText('Ivanov');
+      await driver?.waitFor(find.text('Ivanov'));
+
+      await driver!.tap(emailField);
+      await driver?.enterText('test@test.com');
+      await driver?.waitFor(find.text('test@test.com'));
+
+      await driver!.tap(phoneField);
+      await driver?.enterText('8800500600');
+      await driver?.waitFor(find.text('8800500600'));
+
       await driver!.tap(submitButton);
       await driver?.waitFor(find.text('Вы успешно зарегистрировались'));
       await driver!.tap(okayButton);
-    });
-  });
+    }); 
+  }); 
 }
