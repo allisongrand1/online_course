@@ -1,6 +1,6 @@
 {
-    "name": "nnn",
-    "short_name": "nnn",
+    "name": "animationhero",
+    "short_name": "animationhero",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

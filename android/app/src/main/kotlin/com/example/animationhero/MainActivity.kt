@@ -1,4 +1,4 @@
-package com.example.nnn
+package com.example.animationhero
 
 import io.flutter.embedding.android.FlutterActivity
 
