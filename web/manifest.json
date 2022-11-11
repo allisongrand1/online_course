@@ -1,6 +1,6 @@
 {
-    "name": "animationhero",
-    "short_name": "animationhero",
+    "name": "cleanarchitecture",
+    "short_name": "cleanarchitecture",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

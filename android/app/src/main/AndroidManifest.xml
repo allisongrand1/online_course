@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.animationhero">
+    package="com.example.cleanarchitecture">
    <application
-        android:label="animationhero"
+        android:label="cleanarchitecture"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,4 +1,4 @@
-package com.example.animationhero
+package com.example.cleanarchitecture
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-import 'package:animationhero/pages/home_page.dart';
+import 'package:cleanarchitecture/module_ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }

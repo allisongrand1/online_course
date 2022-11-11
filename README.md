@@ -1,4 +1,4 @@
-# animationhero
+# cleanarchitecture
 
 A new Flutter project.
 
