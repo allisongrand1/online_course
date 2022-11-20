@@ -283,7 +283,7 @@ mixin _$UserState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<User> loadedUser) loaded,
+    required TResult Function(UserModel loadedUser) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -291,7 +291,7 @@ mixin _$UserState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<User> loadedUser)? loaded,
+    TResult? Function(UserModel loadedUser)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -299,7 +299,7 @@ mixin _$UserState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<User> loadedUser)? loaded,
+    TResult Function(UserModel loadedUser)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -388,7 +388,7 @@ class _$UserEmptyState implements UserEmptyState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<User> loadedUser) loaded,
+    required TResult Function(UserModel loadedUser) loaded,
     required TResult Function() error,
   }) {
     return empty();
@@ -399,7 +399,7 @@ class _$UserEmptyState implements UserEmptyState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<User> loadedUser)? loaded,
+    TResult? Function(UserModel loadedUser)? loaded,
     TResult? Function()? error,
   }) {
     return empty?.call();
@@ -410,7 +410,7 @@ class _$UserEmptyState implements UserEmptyState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<User> loadedUser)? loaded,
+    TResult Function(UserModel loadedUser)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -502,7 +502,7 @@ class _$UserLoadingState implements UserLoadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<User> loadedUser) loaded,
+    required TResult Function(UserModel loadedUser) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -513,7 +513,7 @@ class _$UserLoadingState implements UserLoadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<User> loadedUser)? loaded,
+    TResult? Function(UserModel loadedUser)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -524,7 +524,7 @@ class _$UserLoadingState implements UserLoadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<User> loadedUser)? loaded,
+    TResult Function(UserModel loadedUser)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -582,7 +582,7 @@ abstract class _$$UserLoadedStateCopyWith<$Res> {
           _$UserLoadedState value, $Res Function(_$UserLoadedState) then) =
       __$$UserLoadedStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<User> loadedUser});
+  $Res call({UserModel loadedUser});
 }
 
 /// @nodoc
@@ -600,9 +600,9 @@ class __$$UserLoadedStateCopyWithImpl<$Res>
   }) {
     return _then(_$UserLoadedState(
       loadedUser: null == loadedUser
-          ? _value._loadedUser
+          ? _value.loadedUser
           : loadedUser // ignore: cast_nullable_to_non_nullable
-              as List<User>,
+              as UserModel,
     ));
   }
 }
@@ -610,15 +610,10 @@ class __$$UserLoadedStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserLoadedState implements UserLoadedState {
-  const _$UserLoadedState({required final List<User> loadedUser})
-      : _loadedUser = loadedUser;
+  const _$UserLoadedState({required this.loadedUser});
 
-  final List<User> _loadedUser;
   @override
-  List<User> get loadedUser {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_loadedUser);
-  }
+  final UserModel loadedUser;
 
   @override
   String toString() {
@@ -630,13 +625,12 @@ class _$UserLoadedState implements UserLoadedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserLoadedState &&
-            const DeepCollectionEquality()
-                .equals(other._loadedUser, _loadedUser));
+            (identical(other.loadedUser, loadedUser) ||
+                other.loadedUser == loadedUser));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_loadedUser));
+  int get hashCode => Object.hash(runtimeType, loadedUser);
 
   @JsonKey(ignore: true)
   @override
@@ -649,7 +643,7 @@ class _$UserLoadedState implements UserLoadedState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<User> loadedUser) loaded,
+    required TResult Function(UserModel loadedUser) loaded,
     required TResult Function() error,
   }) {
     return loaded(loadedUser);
@@ -660,7 +654,7 @@ class _$UserLoadedState implements UserLoadedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<User> loadedUser)? loaded,
+    TResult? Function(UserModel loadedUser)? loaded,
     TResult? Function()? error,
   }) {
     return loaded?.call(loadedUser);
@@ -671,7 +665,7 @@ class _$UserLoadedState implements UserLoadedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<User> loadedUser)? loaded,
+    TResult Function(UserModel loadedUser)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -720,10 +714,10 @@ class _$UserLoadedState implements UserLoadedState {
 }
 
 abstract class UserLoadedState implements UserState {
-  const factory UserLoadedState({required final List<User> loadedUser}) =
+  const factory UserLoadedState({required final UserModel loadedUser}) =
       _$UserLoadedState;
 
-  List<User> get loadedUser;
+  UserModel get loadedUser;
   @JsonKey(ignore: true)
   _$$UserLoadedStateCopyWith<_$UserLoadedState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -769,7 +763,7 @@ class _$UserErrorState implements UserErrorState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
-    required TResult Function(List<User> loadedUser) loaded,
+    required TResult Function(UserModel loadedUser) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -780,7 +774,7 @@ class _$UserErrorState implements UserErrorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
-    TResult? Function(List<User> loadedUser)? loaded,
+    TResult? Function(UserModel loadedUser)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -791,7 +785,7 @@ class _$UserErrorState implements UserErrorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
-    TResult Function(List<User> loadedUser)? loaded,
+    TResult Function(UserModel loadedUser)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

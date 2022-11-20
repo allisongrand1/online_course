@@ -1,7 +1,9 @@
-import 'package:cleanarchitecture/model/user.dart';
+
 import 'package:cleanarchitecture/module_data/services/user_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../module_data/model/user.dart';
 
 part 'user_bloc.freezed.dart';
 
@@ -17,7 +19,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(const UserState.loading());
 
         try {
-          final List<User> loadedUserList = await userRepository.getAllUsers();
+          final UserModel loadedUserList = await userRepository.getInfo();
           emit(UserState.loaded(loadedUser: loadedUserList));
         } catch (_) {
           emit(const UserState.error());

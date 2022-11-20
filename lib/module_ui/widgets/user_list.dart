@@ -26,28 +26,28 @@ class UserList extends StatelessWidget {
           loading: () => const Center(child: CircularProgressIndicator()),
           loaded: (user) {
             return ListView.builder(
-              itemCount: user.length,
+              itemCount: user.model.length,
               itemBuilder: (context, index) => Container(
                 color: index % 2 == 0 ? Colors.white : Colors.blue[50],
                 child: ListTile(
                   leading: Text(
-                    'ID: ${user[index].id}',
+                    'ID: ${user.model[index].id}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   title: Column(
                     children: [
                       Text(
-                        user[index].name,
+                        user.model[index].name,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Column(
                         children: [
                           Text(
-                            'Email: ${user[index].email}',
+                            'Email: ${user.model[index].email}',
                             style: const TextStyle(fontStyle: FontStyle.italic),
                           ),
                           Text(
-                            'Phone: ${user[index].phone}',
+                            'Phone: ${user.model[index].phone}',
                             style: const TextStyle(fontStyle: FontStyle.italic),
                           ),
                         ],
