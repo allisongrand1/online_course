@@ -1,29 +1,28 @@
 import 'package:cleanarchitecture/module_data/model/user.dart';
 import 'package:cleanarchitecture/module_data/services/user_api.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
 
 abstract class Repository {
-  getInfo() {}
+  setup() {}
 }
 
 class UserRepository implements Repository {
-  final UserProvider _userProvider = UserProvider();
+  GetIt getIt = GetIt.instance;
 
-  @override
-  Future<UserModel> getInfo() {
-    return _userProvider.getUsers();
+  void setup() {
+    getIt.registerSingleton<UserProvider>(UserProvider());
+    getIt.registerSingleton<UserModel>(UserModel());
   }
+
 }
 
 class UserModel {
   late List<User> model;
 
-  UserModel(this.model);
+  UserModel();
 
   UserModel.fromDomain(List<User> user) {
-
-    this.model=user;
-    
+    this.model = user;
   }
-  
 }
