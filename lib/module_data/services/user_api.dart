@@ -11,11 +11,11 @@ class UserProvider {
 
     if (response.statusCode == 200) {
       final List<dynamic> userJson = json.decode(response.body);
-       var user1 = userJson.map((json) => User.fromJson(json)).toList();
-  
-       var usermodel = UserModel.fromDomain(user1);
+      var user1 = userJson.map((json) => User.fromJson(json)).toList();
+
+      var usermodel = UserModel.fromDomain(user1);
       return usermodel;
-      
+
       /* userJson.map((json) => User.fromJson(json)).toList(); */
     } else {
       throw Exception('Error fetching users');

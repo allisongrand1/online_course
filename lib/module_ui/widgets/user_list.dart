@@ -1,4 +1,3 @@
-
 import 'package:cleanarchitecture/module_bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,11 +9,10 @@ class UserList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(listener: ((context, state) {
       if (state is UserLoadedState) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Users is Loaded'), duration: Duration(seconds: 5)));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Users is Loaded'), duration: Duration(seconds: 5)));
       }
-    }), 
-    builder: (context, state) {
+    }), builder: (context, state) {
       return state.when(
           empty: () => const Center(
                 child: Text(

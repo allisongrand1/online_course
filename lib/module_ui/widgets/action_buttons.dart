@@ -1,4 +1,3 @@
-
 import 'package:cleanarchitecture/module_bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,7 @@ class ActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserBloc userBloc = context.read<UserBloc>();
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

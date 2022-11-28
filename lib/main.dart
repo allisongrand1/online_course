@@ -1,7 +1,13 @@
+import 'package:cleanarchitecture/module_data/services/user_repository.dart';
 import 'package:cleanarchitecture/module_ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-void main() {
+GetIt getIt = GetIt.instance;
+
+main() {
+  final userRepository = UserRepository();
+  userRepository.setup();
   runApp(const MyApp());
 }
 
