@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "cleanarchitecture" "\0"
+            VALUE "FileDescription", "state_managment" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "cleanarchitecture" "\0"
+            VALUE "InternalName", "state_managment" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "cleanarchitecture.exe" "\0"
-            VALUE "ProductName", "cleanarchitecture" "\0"
+            VALUE "OriginalFilename", "state_managment.exe" "\0"
+            VALUE "ProductName", "state_managment" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
