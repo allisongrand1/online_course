@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_managment/flutter_riverpod/module_data/list_product/list_product.dart';
-import 'package:state_managment/flutter_riverpod/module_data/product_repository.dart';
-import 'package:state_managment/flutter_riverpod/module_data/shopping_bag.dart/shopping_bag.dart';
-
-final stateProductProvider =
-    StateNotifierProvider<ProductRepository, ProductProvider>(
-        (ref) => ProductRepository());
-final stateBagProvider =
-    StateNotifierProvider<BagRepository, BagProvider>((ref) => BagRepository());
+import 'package:state_managment/flutter_riverpod/module_ui/my_app.dart';
 
 class ShopPage extends ConsumerWidget {
   const ShopPage({super.key});
@@ -43,7 +35,7 @@ class ShopPage extends ConsumerWidget {
                   onPressed: () => ref
                       .read(stateBagProvider.notifier)
                       .addInBag(product.listOfProduct[index]),
-                  icon: product.listOfProduct[index].isInBag
+                  icon: ref.watch(stateBagProvider.notifier).isBag
                       ? const Icon(Icons.done)
                       : const Icon(Icons.add),
                 ));

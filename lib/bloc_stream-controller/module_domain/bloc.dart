@@ -80,6 +80,7 @@ class BagBloc implements Bloc {
   }
 
   BagBloc() {
+    _eventController.sink.add(const LoadingEvent());
     _eventController.stream.listen(_mapEventToState);
   }
 
