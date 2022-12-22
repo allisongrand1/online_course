@@ -27,9 +27,14 @@ class BagProduct extends ConsumerWidget {
                       title: Text(bag[index].title),
                       subtitle: Text("${bag[index].amount.toString()}₽"),
                       trailing: IconButton(
-                        onPressed: () => ref
-                            .read(stateBagProvider.notifier)
-                            .clearInBag(bag[index]),
+                        onPressed: () {
+                          ref
+                              .read(stateBagProvider.notifier)
+                              .clearInBag(bag[index]);
+                          ref
+                              .read(stateProductProvider.notifier)
+                              .inBag(bag[index]);
+                        },
                         icon: const Icon(Icons.clear),
                       ));
                 },

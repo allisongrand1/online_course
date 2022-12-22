@@ -7,10 +7,6 @@ class ProductRepository implements Repository {
   final ProductProvider _productProvider = ProductProvider();
   final BagProvider _bagProvider = BagProvider();
 
-  List<Product> lists() {
-    return _productProvider.listOfProduct;
-  }
-
   List<Product> get getListProduct => _productProvider.listOfProduct;
   List<Product> get getListInBag => _bagProvider.bagOfProduct;
 }

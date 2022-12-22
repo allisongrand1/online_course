@@ -17,7 +17,7 @@ class ProductProvider extends Provider {
         amount: 2700),
     Product(
         image:
-            "https://smtauzen.ru/upload/iblock/c63/8wkwij1v0uj28xqcsho09baryb79x104.jpg",
+            "https://martvrn.ru/upload/iblock/7eb/7eb5461737318c888e6fa1e80453b859.jpg",
         title: 'Мужкое поло',
         amount: 2550),
     Product(

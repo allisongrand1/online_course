@@ -6,23 +6,22 @@ import 'package:state_managment/simple%20state%20managment/module_ui/pages/home_
 
 import '../../theme/theme.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ProductRepository>(create: (BuildContext context) => ProductRepository(),
+    return ChangeNotifierProvider<ProductList>(
+        create: (BuildContext context) => ProductList(),
         child: MaterialApp(
-      title: 'Flutter Demo',
-      theme: basicTheme(),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-       routes: {
-        '/': (context) => const ShopPage(),
-        '/bag': (context) => const BagProduct(),
-      },
-       
-    ));
+          title: 'Flutter Demo',
+          theme: basicTheme(),
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const ShopPage(),
+            '/bag': (context) => const BagProduct(),
+          },
+        ));
   }
 }

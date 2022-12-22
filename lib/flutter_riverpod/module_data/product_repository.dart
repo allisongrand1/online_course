@@ -1,25 +1,29 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:state_managment/flutter_riverpod/module_data/list_product/list_product.dart';
+import 'package:state_managment/flutter_riverpod/module_data/lists/lists.dart';
 import 'package:state_managment/flutter_riverpod/module_data/model/model.dart';
 
-abstract class Repository {}
+abstract class Lists {}
 
-class ProductRepository extends StateNotifier<ProductProvider>
-    implements Repository {
-  ProductRepository() : super(ProductProvider()); //state
-  bool isBag = false;
+class ProductList extends StateNotifier<List<Product>> implements Lists {
+  ProductList() : super(listOfProduct); //state
+  void inBag(Product product) {
+    product.isInBag = !product.isInBag;
+    state = state
+        .where((element) =>
+            element.isInBag == product.isInBag ||
+            element.isInBag != product.isInBag)
+        .toList();
+  }
 }
 
-class BagRepository extends StateNotifier<List<Product>> implements Repository {
+class BagList extends StateNotifier<List<Product>> implements Lists {
   double sum = 0;
-  bool isBag = false;
 
-  BagRepository([List<Product>? initialBag]) : super(initialBag ?? []); //state
+  BagList() : super(bagOfProduct); //state
   double get getSum => sum;
 
   void addInBag(Product product) {
     state.add(product);
-    isBag = true;
     sum = sum + product.amount;
   }
 

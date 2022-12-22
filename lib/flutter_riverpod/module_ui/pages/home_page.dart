@@ -20,25 +20,27 @@ class ShopPage extends ConsumerWidget {
           ],
         ),
         body: ListView.builder(
-          itemCount:
-              product.listOfProduct.length, // сколько раз повторится цикл
+          itemCount: product.length, // сколько раз повторится цикл
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
                 leading: SizedBox(
                     width: 50,
                     height: 50,
-                    child: Image.network(product.listOfProduct[index].image)),
-                title: Text(product.listOfProduct[index].title),
-                subtitle:
-                    Text("${product.listOfProduct[index].amount.toString()}₽"),
+                    child: Image.network(product[index].image)),
+                title: Text(product[index].title),
+                subtitle: Text("${product[index].amount.toString()}₽"),
                 trailing: IconButton(
-                  onPressed: () => ref
-                      .read(stateBagProvider.notifier)
-                      .addInBag(product.listOfProduct[index]),
-                  icon: ref.watch(stateBagProvider.notifier).isBag
-                      ? const Icon(Icons.done)
-                      : const Icon(Icons.add),
-                ));
+                    onPressed: () {
+                      ref
+                          .read(stateBagProvider.notifier)
+                          .addInBag(product[index]);
+                      ref
+                          .read(stateProductProvider.notifier)
+                          .inBag(product[index]);
+                    },
+                    icon: product[index].isInBag
+                        ? const Icon(Icons.done)
+                        : const Icon(Icons.add)));
           },
         ));
   }

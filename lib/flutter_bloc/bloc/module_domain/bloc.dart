@@ -6,58 +6,52 @@ import 'package:state_managment/flutter_bloc/bloc/module_data/product_repository
 import 'package:state_managment/flutter_bloc/bloc/module_domain/bloc_event.dart';
 import 'package:state_managment/flutter_bloc/bloc/module_domain/bloc_state.dart';
 
-ProductRepository repository = ProductRepository();
-List<Product> products = repository.getListProduct;
-List<Product> bag = repository.getListInBag;
+ProductRepository _repository = ProductRepository();
+List<Product> _products = _repository.getListProduct;
+List<Product> _bag = _repository.getListInBag;
+double sum = 0;
 
 abstract class Blocs {}
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> implements Blocs {
-  /* ProductRepository repository = ProductRepository();
-  late List<Product> products = repository.getListProduct;
-  late List<Product> bag = repository.getListInBag; */
-
   ProductBloc() : super(LoadingState()) {
     on<LoadedEvent>((event, emit) {
       emit(LoadingState());
       try {
-        emit(LoadedState(products));
+        emit(LoadedState(_products));
       } catch (e) {
         emit(ErrorState(e.toString()));
       }
     });
     on<AddInBagEvent>((event, emit) {
       var product = event.addProduct;
-      product.isInBag = true;
-      bag.add(product);
-      print(bag);
-      emit(LoadedState(products));
+      product.isInBag = !product.isInBag;
+      sum = sum + product.amount;
+      _bag.add(product);
+      emit(LoadedState(_products));
     });
   }
 }
 
 class BagBloc extends Bloc<ProductEvent, ProductState> implements Blocs {
-  /* ProductRepository repository = ProductRepository();
-  late List<Product> products = repository.getListProduct;
-  late List<Product> bag = repository.getListInBag;
- */
+  double get getSum => sum;
+
   BagBloc() : super(LoadingState()) {
     on<LoadedEvent>((event, emit) {
       emit(LoadingState());
       try {
-        emit(LoadedState(bag));
+        emit(LoadedState(_bag));
       } catch (e) {
         emit(ErrorState(e.toString()));
       }
     });
     on<DeleteInBagEvent>((event, emit) {
       var product = event.deleteProduct;
+      product.isInBag = !product.isInBag;
+      _bag = _bag.where((element) => element.title != product.title).toList();
+      sum = sum - product.amount;
 
-      products.map((e) {
-        if (e == product) return product.isInBag = false;
-      });
-      bag.remove(product);
-      emit(LoadedState(bag));
+      emit(LoadedState(_bag));
     });
   }
 }

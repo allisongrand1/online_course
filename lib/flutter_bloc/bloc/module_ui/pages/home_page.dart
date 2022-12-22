@@ -18,56 +18,50 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductBloc()..add(const LoadedEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Магазин"),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/bag');
-                  print("Передаем список в корзину через событие$bag");
-                  /*  bloc.eventSink.add(InBagEvent(bloc.bag));  */
-                },
-                icon: const Icon(Icons.shopping_cart))
-          ],
-        ),
-        body: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-          print(state);
-          print('Дом $products');
-          if (state is LoadedState) {
-            return ListView.builder(
-              itemCount: state.listOfProduct.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                    leading: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: Image.network(state.listOfProduct[index].image)),
-                    title: Text(state.listOfProduct[index].title),
-                    subtitle: Text(
-                        "${state.listOfProduct[index].amount.toString()}₽"),
-                    trailing: IconButton(
-                      onPressed: () {
-                        context
-                            .read<ProductBloc>()
-                            .add(AddInBagEvent(state.listOfProduct[index]));
-                      },
-                      icon: state.listOfProduct[index].isInBag
-                          ? const Icon(Icons.done)
-                          : const Icon(Icons.add),
-                    ));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Магазин"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/bag');
+                BlocProvider.of<BagBloc>(context).add(const LoadedEvent());
               },
-            );
-          } else if (state is ErrorState) {
-            return Center(child: Text(state.message));
-          } else if (state is LoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return Container();
-        }),
+              icon: const Icon(Icons.shopping_cart))
+        ],
       ),
+      body: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
+        if (state is LoadedState) {
+          return ListView.builder(
+            itemCount: state.listOfProduct.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                  leading: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Image.network(state.listOfProduct[index].image)),
+                  title: Text(state.listOfProduct[index].title),
+                  subtitle:
+                      Text("${state.listOfProduct[index].amount.toString()}₽"),
+                  trailing: IconButton(
+                    onPressed: () {
+                      context
+                          .read<ProductBloc>()
+                          .add(AddInBagEvent(state.listOfProduct[index]));
+                    },
+                    icon: state.listOfProduct[index].isInBag
+                        ? const Icon(Icons.done)
+                        : const Icon(Icons.add),
+                  ));
+            },
+          );
+        } else if (state is ErrorState) {
+          return Center(child: Text(state.message));
+        } else if (state is LoadingState) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return Container();
+      }),
     );
   }
 }
