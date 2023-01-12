@@ -1,6 +1,6 @@
 {
-    "name": "state_managment",
-    "short_name": "state_managment",
+    "name": "advanced_widget",
+    "short_name": "advanced_widget",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
