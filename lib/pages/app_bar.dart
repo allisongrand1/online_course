@@ -1,13 +1,12 @@
-// ignore_for_file: file_names
-
 import 'dart:math' as math;
 import 'dart:ui';
-import 'package:advanced_widget/pages/appBar/sheet_from_appBAr.dart';
 import 'package:advanced_widget/theme/theme.dart';
+import 'package:advanced_widget/widgets/sheet_appbar.dart';
 import 'package:flutter/material.dart';
 
 class SheetAppBar extends StatefulWidget {
-  const SheetAppBar({super.key});
+  // ignore: prefer_const_constructors_in_immutables
+  SheetAppBar({super.key});
 
   @override
   SheetAppBarState createState() => SheetAppBarState();

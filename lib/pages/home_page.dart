@@ -1,11 +1,12 @@
-import 'package:advanced_widget/main.dart';
-import 'package:advanced_widget/pages/appBar/appBar.dart';
-import 'package:advanced_widget/pages/renderObject.dart';
+import 'package:advanced_widget/myapp.dart';
+import 'package:advanced_widget/pages/app_bar.dart';
 import 'package:advanced_widget/theme/theme.dart';
+import 'package:advanced_widget/widgets/render_object.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  // ignore: prefer_const_constructors_in_immutables
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          const SheetAppBar(),
+          SheetAppBar(),
         ],
       ),
     ));

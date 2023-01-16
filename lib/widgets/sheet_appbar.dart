@@ -1,16 +1,12 @@
-// ignore: duplicate_ignore
-// ignore: file_names
-// ignore_for_file: file_names
-
 import 'package:advanced_widget/icons/custom_icons.dart';
-import 'package:advanced_widget/main.dart';
+import 'package:advanced_widget/myapp.dart';
 import 'package:advanced_widget/theme/theme.dart';
-// ignore: prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
 
 class Sheet extends StatelessWidget {
   final bool isVisible;
-  const Sheet({
+  // ignore: prefer_const_constructors_in_immutables
+  Sheet({
     super.key,
     required this.isVisible,
   });
