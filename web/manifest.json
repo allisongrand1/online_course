@@ -1,6 +1,6 @@
 {
-    "name": "advanced_widget",
-    "short_name": "advanced_widget",
+    "name": "theme",
+    "short_name": "theme",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
