@@ -1,4 +1,4 @@
-# theme
+# multiplatform_solutions
 
 A new Flutter project.
 

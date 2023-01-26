@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "first_second_tasks",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/first_second_tasks/main.dart"
+        },
+        {
+            "name": "third_task",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/third_task/main.dart"
+        },
+        {
+            "name": "four_task",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/four_task/main.dart"
+        },
+    ]
+}
