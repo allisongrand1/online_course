@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'webview/mock_webview.dart'
     if (dart.library.io) 'webview/non_web_platform_webview.dart'
     if (dart.library.html) 'webview/web_platform_webview.dart';
@@ -15,10 +16,20 @@ class ShowWebsiteWithPlatform extends StatefulWidget {
 
 class _ShowWebsiteWithPlatformState extends State<ShowWebsiteWithPlatform> {
   String web = '';
+  String title = '';
   Future findWebsite(String website) async {
     if (web == '') {
       return "Введите адрес сайта";
     }
+
+    final response = await http.get(
+      Uri.parse(website),
+    );
+    if (response.request!.headers.isNotEmpty) {
+      title = response.headers.keys.first;
+      return webView(website);
+    }
+    title = 'CORS Headers: None';
     return webView(website);
   }
 
@@ -45,8 +56,14 @@ class _ShowWebsiteWithPlatformState extends State<ShowWebsiteWithPlatform> {
                     if (web == '') {
                       return Center(child: Text(snapshot.data));
                     }
-                    return Container(
-                      child: snapshot.data,
+                    return Column(
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        Expanded(child: Container(child: snapshot.data)),
+                      ],
                     );
                   }
                   if (snapshot.connectionState == ConnectionState.active) {

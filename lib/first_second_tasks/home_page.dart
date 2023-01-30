@@ -13,10 +13,20 @@ class ShowWebsite extends StatefulWidget {
 }
 
 class _ShowWebsiteState extends State<ShowWebsite> {
+  String web = '';
+  String title = '';
   Future<String> findWebsite(String website) async {
+    if (web == '') {
+      return "Введите адрес сайта";
+    }
     final response = await http.get(
       Uri.parse(website),
     );
+    if (response.request!.headers.isNotEmpty) {
+      title = response.headers.keys.first;
+      return response.body;
+    }
+    title = 'CORS Headers: None';
     return response.body;
   }
 
@@ -32,7 +42,7 @@ class _ShowWebsiteState extends State<ShowWebsite> {
               child: ListView(
                 children: [
                   FutureBuilder<String>(
-                    future: findWebsite(controller.text),
+                    future: findWebsite(web),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasError) {
                         return Center(child: Text(snapshot.error.toString()));
@@ -41,7 +51,18 @@ class _ShowWebsiteState extends State<ShowWebsite> {
                         return const Center(child: CircularProgressIndicator());
                       }
                       if (snapshot.connectionState == ConnectionState.done) {
-                        return ListTile(title: Text(snapshot.data));
+                        if (web == '') {
+                          return Center(child: Text(snapshot.data));
+                        }
+                        return Column(
+                          children: [
+                            Text(
+                              title,
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            Text(snapshot.data),
+                          ],
+                        );
                       }
                       if (snapshot.connectionState == ConnectionState.active) {
                         return const SafeArea(
@@ -59,9 +80,6 @@ class _ShowWebsiteState extends State<ShowWebsite> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TextFormField(
-                    onChanged: (_) => setState(() {
-                      print(controller.text);
-                    }),
                     textAlignVertical: TextAlignVertical.center,
                     decoration: InputDecoration(
                         hintText: 'Введите значение',
@@ -72,7 +90,7 @@ class _ShowWebsiteState extends State<ShowWebsite> {
                           child: TextButton(
                             onPressed: () {
                               return setState(() {
-                                print(controller.text);
+                                web = controller.text;
                               });
                             },
                             style: TextButton.styleFrom(

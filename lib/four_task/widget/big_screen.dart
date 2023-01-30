@@ -40,39 +40,16 @@ class BigScreen extends StatelessWidget {
                   return Center(child: Text("${snapshot.error}"));
                 } else if (snapshot.hasData) {
                   return GridView.builder(
+                    itemCount: snapshot.data!.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       mainAxisSpacing: 5,
                       crossAxisSpacing: 5,
                     ),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          showPopover(
-                            context: context,
-                            bodyBuilder: (context) => const Text('ddd'),
-                            // ignore: avoid_print
-                            onPop: () => print('Popover was popped!'),
-                            direction: PopoverDirection.bottom,
-                          );
-                        },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                child: CircleAvatar(
-                                  radius: 50,
-                                  foregroundImage: NetworkImage(
-                                      snapshot.data![index].poster),
-                                ),
-                              ),
-                              Text(snapshot.data![index].name),
-                              Text(snapshot.data![index].telephone)
-                            ],
-                          ),
-                        ),
+                    itemBuilder: (_, index) {
+                      return PopButton(
+                        data: snapshot.data![index],
                       );
                     },
                   );
@@ -81,6 +58,59 @@ class BigScreen extends StatelessWidget {
               }),
         ),
       ],
+    );
+  }
+}
+
+class PopButton extends StatelessWidget {
+  final HumanModel data;
+  const PopButton({Key? key, required this.data}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        showPopover(
+          context: context,
+          height: 150,
+          width: 300,
+          backgroundColor: Colors.white,
+          bodyBuilder: (context) => ListView(
+            children: const [
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Посмотреть профиль'),
+              ),
+              ListTile(
+                leading: Icon(Icons.group),
+                title: Text('Посмотреть друзей'),
+              ),
+              ListTile(
+                leading: Icon(Icons.description),
+                title: Text('Сделать репорт данного человека'),
+              ),
+            ],
+          ),
+          // ignore: avoid_print
+          onPop: () => print('Popover was popped!'),
+          direction: PopoverDirection.bottom,
+        );
+      },
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              child: CircleAvatar(
+                radius: 50,
+                foregroundImage: NetworkImage(data.poster),
+              ),
+            ),
+            Text(data.name),
+            Text(data.telephone)
+          ],
+        ),
+      ),
     );
   }
 }
