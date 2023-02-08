@@ -1,4 +1,4 @@
-# multiplatform_solutions
+# work_with_firebase
 
 A new Flutter project.
 

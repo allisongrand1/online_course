@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "multiplatform_solutions" "\0"
+            VALUE "FileDescription", "work_with_firebase" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "multiplatform_solutions" "\0"
+            VALUE "InternalName", "work_with_firebase" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "multiplatform_solutions.exe" "\0"
-            VALUE "ProductName", "multiplatform_solutions" "\0"
+            VALUE "OriginalFilename", "work_with_firebase.exe" "\0"
+            VALUE "ProductName", "work_with_firebase" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

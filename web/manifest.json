@@ -1,6 +1,6 @@
 {
-    "name": "multiplatform_solutions",
-    "short_name": "multiplatform_solutions",
+    "name": "work_with_firebase",
+    "short_name": "work_with_firebase",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

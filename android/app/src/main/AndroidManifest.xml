@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.multiplatform_solutions">
+    package="com.example.work_with_firebase">
    <application
-        android:label="multiplatform_solutions"
+        android:label="work_with_firebase"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

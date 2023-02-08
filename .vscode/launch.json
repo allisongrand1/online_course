@@ -5,22 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "first_second_tasks",
+            "name": "work_with_firebase",
             "request": "launch",
             "type": "dart",
-            "program": "lib/first_second_tasks/main.dart"
-        },
-        {
-            "name": "third_task",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/third_task/main.dart"
-        },
-        {
-            "name": "four_task",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/four_task/main.dart"
-        },
+            "program": "lib/main.dart"
+        }
     ]
 }
