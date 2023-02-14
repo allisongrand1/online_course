@@ -1,4 +1,4 @@
-name: work_with_firebase
+name: webview_camera_maps_playback_flutter
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -36,18 +36,19 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.4.1
-  firebase_storage: ^11.0.10
-  firebase_auth: ^4.2.5
-  cloud_firestore: ^4.3.1
-  freezed: ^2.3.2
-  freezed_annotation: ^2.2.0
-  build_runner: ^2.3.3
-  json_annotation: ^4.8.0
-  json_serializable: ^6.6.1
-  get_it: ^7.2.0
-  flutter_bloc: ^8.1.1
-  email_validator: ^2.1.17
+  camera: ^0.10.3
+  device_info_plus: ^8.0.0
+  video_player: ^2.5.1
+  chewie: ^1.0.0
+  slider: ^0.0.1
+  carousel_slider: ^4.2.1
+  google_maps_flutter: ^2.2.3
+  yandex_mapkit: ^3.2.0
+  permission_handler: ^10.2.0
+  flutter_inappwebview: ^5.7.2+3
+  http: ^0.13.5
+  url_launcher: ^6.1.9
+  # webview_flutter: ^4.0.2
 
 dev_dependencies:
   flutter_test:
