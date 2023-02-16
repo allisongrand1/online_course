@@ -6,6 +6,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant
 import com.yandex.mapkit.MapKitFactory
 
 class MainActivity: FlutterActivity() {
+  
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
     MapKitFactory.setLocale("en_US") // Your preferred language. Not required, defaults to system language
     MapKitFactory.setApiKey("a98d1b2f-7799-460f-b83f-3c7c8c36b521") // Your generated API key
