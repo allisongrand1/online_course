@@ -11,9 +11,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late YandexMapController mapControllerCompleter;
   final List<MapObject> mapObjects = [];
-  double _value = 5;
-  final MapObjectId targetMapObjectId = MapObjectId('target_placemark');
-  static final Point point = Point(latitude: 59.945933, longitude: 30.320045);
+  double _value = 15;
+  final MapObjectId targetMapObjectId = const MapObjectId('target_placemark');
+  static const Point point = Point(latitude: 59.945933, longitude: 30.320045);
 
   @override
   void initState() {
@@ -34,7 +34,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          foregroundColor: Colors.blueGrey,
+          backgroundColor: Colors.white,
+        ),
         body: Stack(alignment: AlignmentDirectional.bottomCenter, children: [
           YandexMap(
             mapObjects: mapObjects,
@@ -65,56 +68,68 @@ class _HomePageState extends State<HomePage> {
               }
             },
           ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                    onPressed: () async {
-                      await mapControllerCompleter.moveCamera(
-                          CameraUpdate.zoomIn(),
-                          animation: MapAnimation(
-                              type: MapAnimationType.linear, duration: 1.0));
-                    },
-                    child: Icon(Icons.add)),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                    onPressed: () async {
-                      await mapControllerCompleter.moveCamera(
-                          CameraUpdate.zoomOut(),
-                          animation: MapAnimation(
-                              type: MapAnimationType.linear, duration: 1.0));
-                    },
-                    child: Icon(Icons.remove)),
-              ),
-              Container(
-                height: 50,
-                child: Slider(
-                  value: _value,
-                  min: 1.0,
-                  max: 10.0,
-                  divisions: 10,
-                  onChanged: (double value) {
-                    setState(() {
-                      if (value > _value) {
-                        _value = value;
-                        mapControllerCompleter.moveCamera(CameraUpdate.zoomIn(),
-                            animation: MapAnimation(
-                                type: MapAnimationType.linear, duration: 1.0));
-                      } else {
-                        _value = value;
-                        mapControllerCompleter.moveCamera(
-                            CameraUpdate.zoomOut(),
-                            animation: MapAnimation(
-                                type: MapAnimationType.linear, duration: 1.0));
-                      }
-                    });
-                  },
+          SizedBox(
+            height: 50,
+            width: 200,
+            child: Slider(
+              activeColor: Colors.blueGrey,
+              value: _value,
+              min: 0,
+              max: 25,
+              onChanged: (double value) {
+                setState(() {
+                  mapControllerCompleter
+                      .moveCamera(CameraUpdate.zoomTo(_value));
+                  _value = value;
+                });
+              },
+            ),
+          ),
+          Positioned(
+            right: 0,
+            bottom: 80,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                          backgroundColor: Colors.white),
+                      onPressed: () {
+                        setState(() {
+                          _value++;
+                          mapControllerCompleter.moveCamera(
+                              CameraUpdate.zoomTo(_value),
+                              animation: const MapAnimation(
+                                  type: MapAnimationType.linear,
+                                  duration: 1.0));
+                        });
+                      },
+                      child: const Icon(Icons.add)),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                          backgroundColor: Colors.white),
+                      onPressed: () {
+                        {
+                          setState(() {
+                            _value--;
+                            mapControllerCompleter.moveCamera(
+                                CameraUpdate.zoomTo(_value),
+                                animation: const MapAnimation(
+                                    type: MapAnimationType.linear,
+                                    duration: 1.0));
+                          });
+                        }
+                      },
+                      child: const Icon(Icons.remove)),
+                ),
+              ],
+            ),
           ),
           Positioned(
             top: 0,
@@ -124,7 +139,9 @@ class _HomePageState extends State<HomePage> {
               height: 60,
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton(
-                child: Icon(Icons.home),
+                foregroundColor: Colors.blueGrey,
+                backgroundColor: Colors.white,
+                child: const Icon(Icons.home),
                 onPressed: () {
                   mapControllerCompleter.moveCamera(
                       animation: const MapAnimation(
