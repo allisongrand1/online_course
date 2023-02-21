@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webview_camera_maps_playback_flutter/video/home_page.dart';
+import 'package:integrations_flutter/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -7,12 +7,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter Demo',
       theme: ThemeData(
+        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      debugShowCheckedModeBanner: false,
-      title: "Video",
-      home: const HomePage(),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

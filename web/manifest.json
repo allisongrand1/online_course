@@ -1,6 +1,6 @@
 {
-    "name": "webview_camera_maps_playback_flutter",
-    "short_name": "webview_camera_maps_playback_flutter",
+    "name": "integrations_flutter",
+    "short_name": "integrations_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

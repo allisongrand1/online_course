@@ -1,6 +1,5 @@
 import UIKit
 import Flutter
-import YandexMapsMobile
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -8,8 +7,16 @@ import YandexMapsMobile
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    YMKMapKit.setLocale("en_US") // Your preferred language. Not required, defaults to system language
-    YMKMapKit.setApiKey("a98d1b2f-7799-460f-b83f-3c7c8c36b521") // Your generated API key
+    let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+    let textChannel = FlutterMethodChannel(name: "ChannelText",
+                                              binaryMessenger: controller.binaryMessenger)
+    
+    batteryChannel.setMethodCallHandler({
+      (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+      // This method is invoked on the UI thread.
+      // Handle battery messages.
+    })
+
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

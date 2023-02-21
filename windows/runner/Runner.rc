@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "webview_camera_maps_playback_flutter" "\0"
+            VALUE "FileDescription", "integrations_flutter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "webview_camera_maps_playback_flutter" "\0"
+            VALUE "InternalName", "integrations_flutter" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "webview_camera_maps_playback_flutter.exe" "\0"
-            VALUE "ProductName", "webview_camera_maps_playback_flutter" "\0"
+            VALUE "OriginalFilename", "integrations_flutter.exe" "\0"
+            VALUE "ProductName", "integrations_flutter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
