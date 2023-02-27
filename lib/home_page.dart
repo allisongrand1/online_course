@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:integration/platform/mobile_service.dart';
-import 'package:integration/platform/platform_view_mobile.dart';
+import 'package:integration_flutter/platform/mobile_service.dart';
+import 'package:integration_flutter/platform/platform_view_mobile.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

@@ -1,4 +1,4 @@
-package com.example.integration
+package com.example.integration_flutter
 
 import AndroidButtonViewFactory
 import android.content.BroadcastReceiver
