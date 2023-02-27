@@ -1,4 +1,4 @@
-# integrations_flutter
+# integration
 
 A new Flutter project.
 

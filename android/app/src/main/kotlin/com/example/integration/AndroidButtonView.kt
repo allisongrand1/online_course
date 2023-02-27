@@ -1,22 +1,21 @@
-package com.example.integrations_flutter
-
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.webkit.*
 import android.widget.Button
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.platform.PlatformView
 
-internal class MyWebView(
+internal class AndroidButtonView(
         context: Context,
-        messenger: BinaryMessenger,
         id: Int,
-        creationParams: Map<String?, Any?>?
+        creationParams: Map<String?, Any?>?,
+        messenger: BinaryMessenger
 ) : PlatformView {
     private val button: Button = Button(context)
 
-    private val intentName = "Events"
-    private val intentMessageId = "Call"
+    private val intentName = "EVENTS"
+    private val intentMessageId = "CALL"
 
     override fun getView(): View {
         return button
@@ -25,12 +24,12 @@ internal class MyWebView(
     override fun dispose() {}
 
     init {
-        button.textSize = 13f
+        button.textSize = 12f
         button.text = "Android Native Button"
         button.setOnClickListener {
-            /* val intent = Intent(intentName)
-            intent.putExtra(intentMessageId, Random.nextInt(0, 550))
-            context.sendBroadcast(intent) */
+            val intent = Intent(intentName)
+            intent.putExtra(intentMessageId, 123456)
+            context.sendBroadcast(intent)
         }
     }
 }

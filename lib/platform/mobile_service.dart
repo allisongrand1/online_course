@@ -1,19 +1,17 @@
 import 'package:flutter/services.dart';
 
 class PlatformService {
-  static const platform = MethodChannel("ChannelText");
-  static const stream = EventChannel("Call_event");
+  static const platform = MethodChannel("CALL_METHOD");
+  static const stream = EventChannel("CALL_EVENTS");
 
-  @override
   Future<int> getValue() async {
     try {
-      return await platform.invokeMethod("Call");
-    } on PlatformException catch (e) {
+      return await platform.invokeMethod("CALL");
+    } on PlatformException {
       return 0;
     }
   }
 
-  @override
   Stream<int> getStream() =>
       stream.receiveBroadcastStream().map((event) => event as int);
 }

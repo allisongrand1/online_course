@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class PlatformWidget extends StatelessWidget {
   const PlatformWidget({super.key});
@@ -11,7 +9,7 @@ class PlatformWidget extends StatelessWidget {
     late final Widget view;
     if (defaultTargetPlatform == TargetPlatform.android) {
       view = AndroidView(
-        viewType: "IntegrationAndroid",
+        viewType: "INTEGRATION_ANDROID",
         onPlatformViewCreated: _onPlatformViewCreated,
       );
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
@@ -20,7 +18,7 @@ class PlatformWidget extends StatelessWidget {
         onPlatformViewCreated: _onPlatformViewCreated,
       );
     } else {
-      view = Text('data');
+      view = const Text('data');
     }
     return SizedBox(
       height: 50,
