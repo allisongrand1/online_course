@@ -1,5 +1,5 @@
+import 'package:devtools_flutter/task_1/my_app.dart';
 import 'package:flutter/material.dart';
-import 'package:integration_flutter/myapp.dart';
 
 void main() {
   runApp(const MyApp());

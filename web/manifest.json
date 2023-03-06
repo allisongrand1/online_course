@@ -1,6 +1,6 @@
 {
-    "name": "integration_flutter",
-    "short_name": "integration_flutter",
+    "name": "devtools_flutter",
+    "short_name": "devtools_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,4 +1,4 @@
-# integration_flutter
+# devtools_flutter
 
 A new Flutter project.
 
