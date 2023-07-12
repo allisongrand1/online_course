@@ -1,6 +1,6 @@
 {
-    "name": "devtools_flutter",
-    "short_name": "devtools_flutter",
+    "name": "presistance_data",
+    "short_name": "presistance_data",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
