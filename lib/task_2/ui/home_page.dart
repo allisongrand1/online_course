@@ -1,8 +1,12 @@
 import 'dart:io';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:presistance_data/task_2/bloc/bloc.dart';
+import 'package:presistance_data/task_2/bloc/event.dart';
+import 'package:presistance_data/task_2/bloc/state.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -13,7 +17,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController _controller;
-  Future<List<Image>> listOfPic = Future.value([]);
   late File file;
 
   @override
@@ -33,59 +36,66 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<List<Image>> _showPicture() async {
-    Image? image = Image.memory(file.readAsBytesSync());
-    listOfPic.then((value) => value.add(image));
-
-    return await listOfPic;
-  }
-
-  void savePtogress() async {
-    var url = _controller.text;
-    var response = await http.get(Uri.parse(url));
-    Directory documentDirectory = await getApplicationDocumentsDirectory();
-    file = File(join(documentDirectory.path, url.split('/').last));
-    file.writeAsBytes(response.bodyBytes);
-    setState(() {});
+  @override
+  Widget build(BuildContext context) {
+    BlocProvider.of<MainBloc>(context).add(DownloadEvent(file));
+    return Scaffold(
+        appBar: AppBar(),
+        body: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+          if (state is InitialMainState) {
+            return Center(
+              child: Text('Нет данных'),
+            );
+          } else if (state is LoadingMainState) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is LoadedMainState) {
+            return Column(
+              children: [
+                Expanded(
+                    child: FutureBuilder<List<Image>>(
+                  future: state.images,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              child: snapshot.data![index],
+                            );
+                          });
+                    }
+                    return const Center(
+                      child: Text('Данные загружаются...'),
+                    );
+                  },
+                )),
+                SizedBox(
+                  height: 60,
+                  child: TextFormField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                        suffix: IconButton(
+                            onPressed: () {
+                              context
+                                  .read<MainBloc>()
+                                  .add(SaveEvent(_controller.text, file));
+                              context.read<MainBloc>().add(DownloadEvent(file));
+                            },
+                            icon: const Icon(Icons.add))),
+                  ),
+                ),
+              ],
+            );
+          }
+          return Container();
+        }));
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            Expanded(
-                child: FutureBuilder<List<Image>>(
-              future: _showPicture(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          child: snapshot.data![index],
-                        );
-                      });
-                }
-                return const Center(
-                  child: Text('Нет данных'),
-                );
-              },
-            )),
-            SizedBox(
-              height: 60,
-              child: TextFormField(
-                controller: _controller,
-                decoration: InputDecoration(
-                    suffix: IconButton(
-                        onPressed: () {
-                          savePtogress();
-                        },
-                        icon: const Icon(Icons.add))),
-              ),
-            ),
-          ],
-        ));
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }

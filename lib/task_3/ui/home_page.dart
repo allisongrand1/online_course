@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final personDao = _database!.personDao;
 
     _persons = await personDao.findAllPersons();
+    setState(() {});
     for (var person in _persons) {
       final bankValue = await storage!.read(key: person.id.toString());
       _bankCard = bankValue ?? '777 666 555 444';
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _insertPerson(Person person, String bank) async {
     await _database!.personDao.insertPerson(person);
     _persons = await _database!.personDao.findAllPersons();
-
+    setState(() {});
     final newBankCard =
         _persons.where((element) => element.id == person.id).toList();
     for (var person in newBankCard) {
@@ -210,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             _controllerFirstName.text,
                             _controllerLastName.text,
                             int.parse(_controllerAge.text),
-                            "https://www.fonstola.ru/pic/201401/1920x1080/fonstola.ru_141324.jpg",
+                            "https://coolsen.ru/wp-content/uploads/2021/10/022-20211031_182237.jpg",
                             _controllerPhone.text),
                         _controllerBank.text);
                     _controllerFirstName.text = '';

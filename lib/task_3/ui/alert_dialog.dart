@@ -62,6 +62,7 @@ class _AlertDialogAccountState extends State<AlertDialogAccount> {
       await storage!.read(key: person.id.toString());
     }
     _persons = await widget.database.personDao.findAllPersons();
+    setState(() {});
   }
 
   @override

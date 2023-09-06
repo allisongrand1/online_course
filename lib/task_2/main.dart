@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:presistance_data/task_3/ui/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:presistance_data/task_2/bloc/bloc.dart';
+import 'package:presistance_data/task_2/bloc/event.dart';
+import 'package:presistance_data/task_2/ui/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +21,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage());
+        home: BlocProvider<MainBloc>(
+          create: (context) => MainBloc(),
+          child: MyHomePage(),
+        ));
   }
 }
 
