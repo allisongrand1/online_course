@@ -1,7 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.presistance_data">
-   <application
-        android:label="presistance_data"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:label="custom_flutter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

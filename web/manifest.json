@@ -1,6 +1,6 @@
 {
-    "name": "presistance_data",
-    "short_name": "presistance_data",
+    "name": "custom_flutter",
+    "short_name": "custom_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
